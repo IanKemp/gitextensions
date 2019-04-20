@@ -46,7 +46,7 @@ namespace GitUI.CommandsDialogs
             this.Clear = new System.Windows.Forms.Button();
             this.StashMessage = new System.Windows.Forms.RichTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.Loading = new LoadingControl();
+            this.Loading = new GitUI.UserControls.RevisionGrid.LoadingControl();
             this.Stashed = new GitUI.FileStatusList();
             this.toolStrip1 = new GitUI.ToolStripEx();
             this.showToolStripLabel = new System.Windows.Forms.ToolStripLabel();
@@ -56,6 +56,7 @@ namespace GitUI.CommandsDialogs
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.View = new GitUI.Editor.FileViewer();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.ApplyFiles = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gitStashBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -119,6 +120,7 @@ namespace GitUI.CommandsDialogs
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.ApplyFiles, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.StashSelectedFiles, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.Stash, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.chkIncludeUntrackedFiles, 1, 0);
@@ -129,7 +131,8 @@ namespace GitUI.CommandsDialogs
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 751);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 5;
+            this.tableLayoutPanel1.RowCount = 6;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -351,6 +354,20 @@ namespace GitUI.CommandsDialogs
             this.View.TabIndex = 0;
             this.View.KeyUp += new System.Windows.Forms.KeyEventHandler(this.View_KeyUp);
             // 
+            // ApplyFiles
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.ApplyFiles, 2);
+            this.ApplyFiles.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ApplyFiles.Location = new System.Drawing.Point(3, 150);
+            this.ApplyFiles.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
+            this.ApplyFiles.Name = "ApplyFiles";
+            this.ApplyFiles.Size = new System.Drawing.Size(277, 25);
+            this.ApplyFiles.TabIndex = 18;
+            this.ApplyFiles.Text = "Apply Selected Files";
+            this.toolTip.SetToolTip(this.ApplyFiles, "Apply the selected files on top of the current working directory state");
+            this.ApplyFiles.UseVisualStyleBackColor = true;
+            this.ApplyFiles.Click += new System.EventHandler(this.ApplyFiles_Click);
+            // 
             // FormStash
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(192F, 192F);
@@ -407,5 +424,6 @@ namespace GitUI.CommandsDialogs
         private Panel panel1;
         private ToolTip toolTip;
         private Button StashSelectedFiles;
+        private Button ApplyFiles;
     }
 }

@@ -236,6 +236,18 @@ namespace GitUI
             return DoActionOnRepo(owner, true, true, null, null, Action);
         }
 
+        public bool StashApplyFiles(IWin32Window owner, int stashIndex, IEnumerable<string> stashFileNames)
+        {
+            bool Action()
+            {
+                FormProcess.ShowDialog(owner, Module, "checkout stash@{" + stashIndex + "} " + string.Join(" ", stashFileNames.Select(f => f.Quote())));
+                MergeConflictHandler.HandleMergeConflicts(this, owner, false, false);
+                return true;
+            }
+
+            return DoActionOnRepo(owner, true, true, null, null, Action);
+        }
+
         public void ShowModelessForm(IWin32Window owner, bool requiresValidWorkingDir,
             EventHandler<GitUIEventArgs> preEvent, EventHandler<GitUIPostActionEventArgs> postEvent, Func<Form> provideForm)
         {
