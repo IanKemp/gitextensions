@@ -441,8 +441,7 @@ namespace GitUI.CommandsDialogs
 
         private void ApplyFiles_Click(object sender, EventArgs e)
         {
-            UICommands.StashApplyFiles(this, ((GitStash)Stashes.SelectedItem).Index, Stashed.AllItems.Select(i => i.Name));
-            Initialize();
+            UICommands.StashApplyFiles(this, ((GitStash)Stashes.SelectedItem).Index, Stashed.SelectedItems.Select(i => i.Name));
         }
     }
 }
